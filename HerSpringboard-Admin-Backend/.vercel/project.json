@@ -1,0 +1,16 @@
+{
+  "projectId": "prj_5usnL1eAeVp1HSvzWlzSJgz5G643",
+  "orgId": "team_yi46byHqkYeDsMN2MJtB9Ldl",
+  "projectName": "backend",
+  "settings": {
+    "createdAt": 1758365451935,
+    "framework": "create-react-app",
+    "devCommand": null,
+    "installCommand": null,
+    "buildCommand": null,
+    "outputDirectory": null,
+    "rootDirectory": null,
+    "directoryListing": false,
+    "nodeVersion": "22.x"
+  }
+}
