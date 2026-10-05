@@ -55,16 +55,41 @@ export default function App({ onLogout }) {
     setEditingUser(user);
     setManageView('edit');
   };
-  const handleDeleteUser = async (email) => {
-    if (!window.confirm('Are you sure you want to delete this user?')) return;
-    try {
-      const res = await fetch(`http://localhost:3002/users/${email}`, { method: 'DELETE' });
-      if (!res.ok) throw new Error('Failed to delete user');
-      await fetchUsers();
-    } catch (err) {
-      alert('Delete failed: ' + err.message);
+  const handleDeleteUser = async (user) => {
+  if (!window.confirm('Are you sure you want to delete this user?')) {
+    return;
+  }
+
+  try {
+    const res = await fetch(
+      `http://localhost:3002/users/${encodeURIComponent(
+        user.email.toLowerCase()
+      )}`,
+      {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          category: user.category,
+          registerType: user.registerType,
+        }),
+      }
+    );
+
+    if (!res.ok) {
+      const errorData = await res.json();
+      throw new Error(errorData.error || 'Failed to delete user');
     }
-  };
+
+    alert('User deleted successfully');
+
+    await fetchUsers();
+  } catch (err) {
+    console.error('Delete error:', err);
+    alert('Delete failed: ' + err.message);
+  }
+};
   const handleEditCourse = (course) => {
     setEditingCourse(course);
     setManageView('edit');

@@ -146,9 +146,9 @@ export default function ManageUsers({ users, onDelete, onEdit, onBack }) {
                       Edit
                     </button>
 
-                    <button onClick={() => onDelete(user.email)}>
-                      Delete
-                    </button>
+                   <button onClick={() => onDelete(user)}>
+  Delete
+</button>
                   </div>
                 </td>
               </tr>
